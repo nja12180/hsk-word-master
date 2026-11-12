@@ -4,8 +4,10 @@ import 'package:provider/provider.dart';
 import '../data/word_repository.dart';
 import '../models/word.dart';
 import '../services/progress_service.dart';
+import '../services/speech_service.dart';
 import '../theme/app_theme.dart';
 import '../widgets/common_widgets.dart';
+import '../widgets/speak_button.dart';
 import 'study_screen.dart';
 
 /// 단어장 (검색 / 급수 필터 / 즐겨찾기)
@@ -411,6 +413,22 @@ class _WordTile extends StatelessWidget {
                     : AppColors.inkSoft.withValues(alpha: 0.6),
               ),
             ),
+            GestureDetector(
+              onTap: () => SpeechService.instance.speak(word.hanzi),
+              child: Container(
+                padding: const EdgeInsets.all(8),
+                margin: const EdgeInsets.only(right: 2),
+                decoration: BoxDecoration(
+                  color: accent.withValues(alpha: 0.12),
+                  shape: BoxShape.circle,
+                ),
+                child: Icon(
+                  Icons.volume_up_rounded,
+                  size: 17,
+                  color: accent,
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -490,15 +508,28 @@ class _WordDetailSheetState extends State<_WordDetailSheet> {
               ],
             ),
             const SizedBox(height: 6),
-            Text(
-              w.hanzi,
-              style: const TextStyle(
-                fontSize: 46,
-                fontWeight: FontWeight.w900,
-                color: AppColors.ink,
-                letterSpacing: 3,
-                height: 1.15,
-              ),
+            Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  w.hanzi,
+                  style: const TextStyle(
+                    fontSize: 46,
+                    fontWeight: FontWeight.w900,
+                    color: AppColors.ink,
+                    letterSpacing: 3,
+                    height: 1.15,
+                  ),
+                ),
+                const SizedBox(width: 12),
+                SpeakButton(
+                  text: w.hanzi,
+                  color: accent,
+                  size: 46,
+                  iconSize: 22,
+                  bordered: true,
+                ),
+              ],
             ),
             const SizedBox(height: 6),
             Text(

@@ -1,6 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <application
-        android:label="hsk_word_master"
+        android:label="HSK 단어마스터"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
@@ -43,3 +43,4 @@
         </intent>
     </queries>
 </manifest>
+

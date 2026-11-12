@@ -6,9 +6,11 @@ import 'package:provider/provider.dart';
 import '../data/word_repository.dart';
 import '../models/word.dart';
 import '../services/progress_service.dart';
+import '../services/speech_service.dart';
 import '../services/study_queue_builder.dart';
 import '../theme/app_theme.dart';
 import '../widgets/common_widgets.dart';
+import '../widgets/speak_button.dart';
 
 /// 플래시카드 학습 화면
 class StudyScreen extends StatefulWidget {
@@ -169,6 +171,13 @@ class _StudyScreenState extends State<StudyScreen>
             children: <Widget>[
               LevelPill(level: word.level, compact: true),
               const Spacer(),
+              SpeakButton(
+                text: word.hanzi,
+                color: accent,
+                size: 38,
+                iconSize: 18,
+              ),
+              const SizedBox(width: 8),
               _IconAction(
                 icon: context.watch<ProgressService>().isFavorite(word.id)
                     ? Icons.bookmark_rounded
@@ -311,6 +320,14 @@ class _StudyScreenState extends State<StudyScreen>
               ),
             ),
           ),
+          const SizedBox(height: 22),
+          SpeakButton(
+            text: word.hanzi,
+            color: accent,
+            size: 46,
+            iconSize: 22,
+            bordered: true,
+          ),
         ],
       ),
     );
@@ -353,14 +370,35 @@ class _StudyScreenState extends State<StudyScreen>
               ),
             ),
             const SizedBox(height: 8),
-            Text(
-              word.pinyin,
-              style: TextStyle(
-                fontSize: 19,
-                fontWeight: FontWeight.w700,
-                color: accent,
-                letterSpacing: 0.4,
-              ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Text(
+                  word.pinyin,
+                  style: TextStyle(
+                    fontSize: 19,
+                    fontWeight: FontWeight.w700,
+                    color: accent,
+                    letterSpacing: 0.4,
+                  ),
+                ),
+                const SizedBox(width: 8),
+                GestureDetector(
+                  onTap: () => SpeechService.instance.speak(word.hanzi),
+                  child: Container(
+                    padding: const EdgeInsets.all(5),
+                    decoration: BoxDecoration(
+                      color: accent.withValues(alpha: 0.16),
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      Icons.volume_up_rounded,
+                      size: 15,
+                      color: accent,
+                    ),
+                  ),
+                ),
+              ],
             ),
             const SizedBox(height: 20),
             Container(
