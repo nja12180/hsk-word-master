@@ -1,11 +1,11 @@
 {
-    "name": "hsk_word_master",
-    "short_name": "hsk_word_master",
+    "name": "HSK 단어마스터",
+    "short_name": "HSK 단어",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#F8495A",
+    "theme_color": "#F8495A",
+    "description": "HSK 3.0 3~6급 공식 단어 4,184개를 매일 조금씩 외우는 플래시카드",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
@@ -31,5 +31,6 @@
             "type": "image/png",
             "purpose": "maskable"
         }
-    ]
+    ],
+    "lang": "ko"
 }
