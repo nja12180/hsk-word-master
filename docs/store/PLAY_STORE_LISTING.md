@@ -2,6 +2,9 @@
 
 > Play Console 입력용 최종본. 글자 수 제한을 모두 준수했습니다.
 > 패키지명: `com.hskwordmaster.flashcards` · 버전: 1.0.0 (versionCode 1)
+>
+> **개인정보처리방침 URL (라이브 검증 완료)**
+> `https://nja12180.github.io/hsk-word-master/privacy-policy.html`
 
 ---
 
@@ -120,7 +123,9 @@ Play Console → 정책 → **앱 콘텐츠**에서 아래 항목을 순서대�
 ```
 URL: https://nja12180.github.io/hsk-word-master/privacy-policy.html
 ```
-> GitHub Pages 배포 후 위 URL을 입력합니다. (배포 방법은 5장 참고)
+
+> ✅ **2026-11-13 라이브 검증 완료** — `HTTP/2 200`, 9,991 bytes, 한국어 정상 렌더링 확인.
+> 위 URL을 Play Console에 그대로 붙여넣으면 됩니다. (배포 경위는 5장 참고)
 
 ### 3.2 앱 액세스 권한
 
@@ -258,9 +263,9 @@ URL: https://nja12180.github.io/hsk-word-master/privacy-policy.html
 ## 5. 개인정보처리방침 호스팅 (GitHub Pages)
 
 Play Console은 개인정보처리방침의 **공개 접근 가능한 URL**을 요구합니다.
-GitHub Pages로 무료·영구 호스팅하는 것을 권장합니다.
+GitHub Pages로 무료·영구 호스팅하며, **현재 배포·활성화가 모두 완료된 상태**입니다.
 
-### 5.1 배포 절차
+### 5.1 배포 절차 ✅ 완료
 
 ```bash
 cd /home/user/flutter_app
@@ -281,7 +286,7 @@ git remote add origin https://github.com/nja12180/hsk-word-master.git
 git push -f origin gh-pages
 ```
 
-### 5.2 GitHub Pages 활성화
+### 5.2 GitHub Pages 활성화 ✅ 완료
 
 1. GitHub 저장소 → **Settings** → **Pages**
 2. Source: **Deploy from a branch**
@@ -292,7 +297,7 @@ git push -f origin gh-pages
 https://nja12180.github.io/hsk-word-master/privacy-policy.html
 ```
 
-### 5.3 확인
+### 5.3 확인 ✅ 완료
 
 ```bash
 curl -s -o /dev/null -w "%{http_code}\n" \
@@ -300,9 +305,24 @@ curl -s -o /dev/null -w "%{http_code}\n" \
 # 200 이 나오면 정상
 ```
 
-> 저장소가 **Private**이면 GitHub Pages가 무료 플랜에서 동작하지 않을 수 있습니다.
-> 이 경우 ① 저장소를 Public으로 전환하거나, ② GitHub Gist + raw URL,
-> ③ Notion 페이지 공개 링크 등을 대안으로 사용하세요.
+실측 결과:
+
+| 항목 | 결과 |
+|---|---|
+| `privacy-policy.html` | **HTTP/2 200**, 9,991 bytes |
+| 루트 `/` | **HTTP 200** |
+| `<title>` | HSK 단어마스터 개인정보처리방침 |
+| 렌더링 | 한국어 정상 (요약 박스·1장·2.1장 확인) |
+| 서버 | GitHub.com (Fastly) |
+
+> **참고 (API 메타데이터 지연)**: 페이지가 이미 200으로 서비스되는데도
+> `GET /repos/nja12180/hsk-word-master/pages` API가 한동안 `404`를 반환하는
+> 경우가 있습니다. 이는 GitHub 내부 전파 지연으로, 실제 서비스에는 영향이 없습니다.
+> URL 접속이 200이면 활성화된 것으로 판단하세요.
+
+> **과거 블로커 (해결됨)**: 저장소가 **Private**이면 무료 플랜에서 GitHub Pages를
+> 사용할 수 없습니다. 이 프로젝트는 저장소를 **Public**으로 전환하여 해결했습니다.
+> 대안으로는 ② GitHub Gist + raw URL, ③ Notion 공개 페이지 등이 있습니다.
 
 ---
 
