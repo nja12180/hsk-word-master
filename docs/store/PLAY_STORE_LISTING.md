@@ -920,9 +920,23 @@ curl -s -o /dev/null -w "%{http_code}\n" \
 | `web/favicon.png` | 32×32 | 파비콘, 풀블리드로 교정 |
 | `web/icons/Icon-maskable-512.png` | 512×512 | 마스커블 PWA 아이콘, 안전영역 78%로 재생성 |
 | `web/icons/Icon-maskable-192.png` | 192×192 | 마스커블 PWA 아이콘, 안전영역 78%로 재생성 |
+| `assets/icon/app_icon.png` | 192×192 | 아이콘 원본 사본, 풀블리드로 교정 |
 
 > 모든 파일 위치: `/home/user/store_assets/` 및 `/home/user/flutter_app/docs/store/`
 > 아이콘 재생성 스크립트: `/home/user/scripts/fix_icon_fullbleed.py`
+> 마스커블 생성 스크립트: `/home/user/scripts/make_maskable_icons.py`
+
+**⚠️ 파일이 두 곳에 있습니다 — 업로드용은 반드시 이쪽**
+
+| 위치 | 역할 |
+|---|---|
+| `/home/user/store_assets/play_icon_512.png` | Play Console 업로드용 **정본** |
+| `/home/user/flutter_app/docs/store/play_icon_512.png` | 저장소에 함께 커밋되는 사본 (내용 동일) |
+| `/home/user/store_assets/play_icon_512.orig.png` | 수정 전 원본 (보관, **업로드 금지**) |
+
+> 두 파일은 `cmp` 로 동일성을 확인합니다. 아이콘을 다시 만들면
+> **양쪽 모두 갱신**해야 합니다. 수정 전 원본(`*.orig.png`)을 실수로 올리면
+> 모서리 검정 때문에 디자인 사양 위반이 되므로 주의하세요.
 
 ---
 
